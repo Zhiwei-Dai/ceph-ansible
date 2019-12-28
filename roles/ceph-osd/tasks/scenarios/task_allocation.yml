@@ -1,0 +1,15 @@
+---
+
+- name: "create common osds"
+  include_tasks: lvm-batch.yml
+  when: '"{{ inventory_hostname }}" not in "{{ exp_host }}"'
+
+- name: "solve part exception osds"
+  include_tasks: lvm-batch.yml
+  when:
+    - '"{{ inventory_hostname }}" in "{{ exp_host }}"'
+    - '"{{ exp_host[inventory_hostname]["scope"] }}" == "part"'
+
+- name: "solve all exception osds"
+  include_tasks: exception_hosts_devs.yml
+  when: '"{{ inventory_hostname }}" in "{{ exp_host }}"'

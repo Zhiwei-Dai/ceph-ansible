@@ -42,8 +42,8 @@
     - lvm_volumes|length > 0
     - not rolling_update|default(False) | bool
 
-- name: include_tasks scenarios/lvm-batch.yml
-  include_tasks: scenarios/lvm-batch.yml
+- name: include_tasks scenarios/task_allocation.yml
+  include_tasks: scenarios/task_allocation.yml
   when:
     - devices|length > 0
     - not rolling_update|default(False) | bool

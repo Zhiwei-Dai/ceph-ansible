@@ -33,6 +33,21 @@ copy_admin_key: false
 
 devices: []
 
+# Declare some exception hosts
+# Just in case that some of these devices exist on these exception hosts
+# Note: Scope is used to controll devices' scope. If set to part, devices sdb~sdg will
+# be used as OSDs for host1. If set to all, only sdb is added to host2.
+
+#exp_hosts:
+#  host1:
+#    scope: part
+#    devs: [/dev/sdf,/dev/sdg]
+#  host2:
+#    scope: all
+#    devs: [/dev/sdb]
+
+exp_hosts: []
+
 # Declare devices to be used as block.db devices
 
 #dedicated_devices:
