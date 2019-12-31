@@ -17,3 +17,7 @@
   include_tasks: setup_ntp.yml
   when: ntp_service_enabled | bool
   tags: configure_ntp
+
+- name: include_tasks configure_numa.yml
+  include_tasks: configure_numa.yml
+  when: 'nic is defined or disk is defined'

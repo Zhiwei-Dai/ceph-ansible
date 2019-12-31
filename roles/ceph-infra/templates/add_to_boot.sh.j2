@@ -1,0 +1,12 @@
+{% if ansible_os_family == "RedHat" %}
+f=`cat /etc/rc.d/rc.local | grep "#ceph user defined"`
+
+if [ !$f ]
+then
+	echo "#ceph user defined" >> /etc/rc.d/rc.local
+	echo "sh {{ generate_path }}/config_numa.sh" >> /etc/rc.d/rc.local
+	chmod +x /etc/rc.d/rc.local
+fi
+
+sh {{ generate_path }}/config_numa.sh
+{% endif %}

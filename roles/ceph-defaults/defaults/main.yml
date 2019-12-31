@@ -539,6 +539,14 @@ rgw_pull_proto: "http" # should be the same as rgw_multisite_proto for the maste
 ceph_conf_overrides: {}
 
 
+#####################
+# COMMON PARAMETERS #
+#####################
+# these parameters is used to define some common vars for PBR and 'disk & nic numa node'
+# path to generate scripts
+# generate_path: '/etc/ceph.ansible'
+
+
 #############
 # OS TUNING #
 #############
@@ -554,6 +562,18 @@ os_tuning_params:
 # Set this to a byte value (e.g. 134217728)
 # A value of 0 will leave the package default.
 ceph_tcmalloc_max_total_thread_cache: 0
+
+
+##################################
+# CONFIGURE DISK & NIC NUMA NODE #
+##################################
+# this part can set disk and nic numa node
+# example:
+#
+# nic:
+#   - { host: 'host1', ens1f0: 0, ens1f1: 1 }
+# disk:
+#   - { host: 'host1', nvme0n1: 0, nvme1n1: 1 }
 
 
 ##########

@@ -1,0 +1,25 @@
+#network
+{% if nic is defined %}
+{% for key in nic %}
+{% if key['host'] == ansible_hostname %}
+{% for k in key %}
+{% if k != 'host' %}
+echo {{ key[k] }} > /sys/class/net/{{ k }}/device/numa_node
+{% endif %}
+{% endfor %}
+{% endif %}
+{% endfor %}
+{% endif %}
+
+#disk
+{% if disk is defined %}
+{% for key in disk %}
+{% if key['host'] == ansible_hostname %}
+{% for k in key %}
+{% if k != 'host' %}
+echo {{ key[k] }} > /sys/class/net/{{ k }}/device/numa_node
+{% endif %}
+{% endfor %}
+{% endif %}
+{% endfor %}
+{% endif %}

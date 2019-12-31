@@ -1,0 +1,32 @@
+---
+- name: check if generate path is exist
+  file:
+    path: "{{ generate_path }}"
+    state: directory
+    owner: "root"
+    group: "root"
+    mode: 0755
+
+- name: generate numa node config file
+  become: true
+  template:
+    src: "templates/config_numa.sh.j2"
+    dest: "{{ generate_path }}/config_numa.sh"
+    owner: "root"
+    group: "root"
+    mode: "0744"
+    setype: "bin_t"
+
+- name: generate add to boot script
+  become: true
+  template:
+    src: "templates/add_to_boot.sh.j2"
+    dest: "{{ generate_path }}/add_to_boot.sh"
+    owner: "root"
+    group: "root"
+    mode: "0744"
+    setype: "bin_t"
+
+- name: execute add to boot
+  become: true
+  command: sh {{ generate_path }}/add_to_boot.sh
